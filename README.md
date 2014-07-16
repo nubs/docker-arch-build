@@ -20,6 +20,7 @@ features:
 This library is useful with simple `PKGBUILD`'s from the command line.  For
 example, assuming you have a `PKGBUILD` with no additional dependencies beyond
 `base-devel` in `/tmp/my-package`:
+
 ```bash
 docker run --interactive --tty --rm --volume /tmp/my-package:/package nubs/arch-build
 
@@ -31,6 +32,7 @@ This will make the package placing the results (including the `pkg.tar.xz`
 file for a successful build) in `/tmp/my-package`.
 
 In order to create the aurball:
+
 ```bash
 docker run -i -t --rm -v /tmp/my-package:/package nubs/arch-build mkaurball
 ```
@@ -42,6 +44,7 @@ software needed, altering the commands to run, etc.
 
 A simple one that just installs another package but leaves the rest of the
 process alone could look like this:
+
 ```dockerfile
 FROM nubs/arch-build
 
@@ -51,6 +54,7 @@ RUN sudo pacman --sync --noconfirm --noprogressbar --quiet php
 You can then build this docker image and run it against your `PKGBUILD` volume
 like normal (this example assumes the `PKGBUILD` and `Dockerfile` are in your
 current directory):
+
 ```bash
 docker build --tag my-package .
 docker run -i -t --rm -v "$(pwd):/package" my-package
