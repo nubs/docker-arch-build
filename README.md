@@ -5,6 +5,7 @@ This is a base image for building packages for [Arch Linux].
 This docker image builds on top of Arch Linux's base/devel image for the
 purpose of building arch packages and aurballs.  It provides several key
 features:
+
 * A non-root user (`build`) for executing the image build.  This is important
   to ensure that the package can be built correctly without destructively
   modifying the system.  This build user has full passwordless sudo access.
