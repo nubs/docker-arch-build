@@ -5,7 +5,7 @@ MAINTAINER Spencer Rinehart <anubis@overthemonkey.com>
 RUN pacman --sync --refresh --noconfirm --noprogressbar --quiet
 RUN pacman --sync --noconfirm --noprogressbar --quiet git
 
-RUN useradd --create-home build
+RUN useradd --create-home --comment "Arch Build User" build
 RUN echo "build ALL=(ALL:ALL) NOPASSWD: ALL" >>/etc/sudoers
 
 USER build
