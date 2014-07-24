@@ -12,7 +12,12 @@ ENV HOME /home/build
 WORKDIR /home/build
 
 RUN curl -sS https://aur.archlinux.org/packages/pk/pkgbuild-introspection-git/pkgbuild-introspection-git.tar.gz | tar -xz
-RUN cd pkgbuild-introspection-git && makepkg --clean --install --noconfirm --noprogressbar
+RUN cd pkgbuild-introspection-git && makepkg --clean --noconfirm --noprogressbar
+
+USER root
+RUN pacman --upgrade --noconfirm --noprogressbar pkgbuild-introspection-git/pkgbuild-introspection-git*.pkg.tar.xz
+
+USER build
 
 VOLUME ["/package"]
 WORKDIR /package
