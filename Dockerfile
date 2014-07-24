@@ -6,7 +6,6 @@ RUN pacman --sync --refresh --sysupgrade --ignore filesystem --noconfirm --nopro
 RUN pacman --sync --noconfirm --noprogressbar --quiet git
 
 RUN useradd --create-home --comment "Arch Build User" build
-RUN echo "build ALL=(ALL:ALL) NOPASSWD: ALL" >>/etc/sudoers
 
 USER build
 ENV HOME /home/build
