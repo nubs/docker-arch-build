@@ -8,7 +8,7 @@ features:
 
 * A non-root user (`build`) for executing the image build.  This is important
   to ensure that the package can be built correctly without destructively
-  modifying the system.  This build user has full passwordless sudo access.
+  modifying the system.
 * The [pkgbuild-introspection] library including the `mkaurball`  command.
   This makes it easy to generate the `.src.tar.gz` files to upload to AUR for
   your packages.
@@ -48,7 +48,11 @@ process alone could look like this:
 ```dockerfile
 FROM nubs/arch-build
 
-RUN sudo pacman --sync --noconfirm --noprogressbar --quiet php
+USER root
+
+RUN pacman --sync --noconfirm --noprogressbar --quiet php
+
+USER build
 ```
 
 You can then build this docker image and run it against your `PKGBUILD` volume
