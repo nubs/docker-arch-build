@@ -17,9 +17,11 @@ RUN cd pkgbuild-introspection-git && makepkg --clean --noconfirm --noprogressbar
 USER root
 RUN pacman --upgrade --noconfirm --noprogressbar pkgbuild-introspection-git/pkgbuild-introspection-git*.pkg.tar.xz
 
-USER build
-
+RUN mkdir /package
+RUN chown build /package
 VOLUME ["/package"]
 WORKDIR /package
+
+USER build
 
 CMD ["makepkg", "--force"]
