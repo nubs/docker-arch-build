@@ -12,6 +12,7 @@ features:
 * The [pkgbuild-introspection] library including the `mkaurball`  command.
   This makes it easy to generate the `.src.tar.gz` files to upload to AUR for
   your packages.
+* The [namcap] command is included to help validate your `PKGBUILD`'s.
 * Default docker command of `makepkg --force`.  This is a common usecase:
   needing to build the package for testing.
 * Access to the build location will be in the volume located at `/package`.
@@ -67,3 +68,4 @@ docker run -i -t --rm -v "$(pwd):/package" my-package mkaurball
 
 [Arch Linux]: https://www.archlinux.org/
 [pkgbuild-introspection]: https://github.com/falconindy/pkgbuild-introspection
+[namcap]: https://wiki.archlinux.org/index.php/Namcap
