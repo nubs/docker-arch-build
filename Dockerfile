@@ -2,8 +2,7 @@ FROM base/devel:minimal
 
 MAINTAINER Spencer Rinehart <anubis@overthemonkey.com>
 
-RUN pacman --sync --refresh --sysupgrade --noconfirm --noprogressbar --quiet
-RUN pacman --sync --noconfirm --noprogressbar --quiet git namcap
+RUN pacman --sync --refresh --sysupgrade --noconfirm --noprogressbar --quiet && pacman --sync --noconfirm --noprogressbar --quiet git namcap
 
 RUN useradd --create-home --comment "Arch Build User" build
 
