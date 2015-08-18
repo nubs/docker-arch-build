@@ -66,6 +66,10 @@ docker run -i -t --rm -v "$(pwd):/package" my-package
 docker run -i -t --rm -v "$(pwd):/package" my-package mkaurball
 ```
 
+## License
+docker-arch-build is licensed under the MIT license.  See [LICENSE](LICENSE)
+for the full license text.
+
 [Arch Linux]: https://www.archlinux.org/
 [pkgbuild-introspection]: https://github.com/falconindy/pkgbuild-introspection
 [namcap]: https://wiki.archlinux.org/index.php/Namcap
