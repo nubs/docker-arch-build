@@ -9,7 +9,7 @@ RUN pacman-key --refresh-keys && \
   pacman --sync --noconfirm --noprogressbar --quiet archlinux-keyring openssl pacman && \
   pacman-db-upgrade && \
   pacman --sync --sysupgrade --noconfirm --noprogressbar --quiet && \
-  pacman --sync --noconfirm --noprogressbar --quiet git namcap pkgbuild-introspection
+  pacman --sync --noconfirm --noprogressbar --quiet base-devel git namcap pkgbuild-introspection
 
 RUN useradd --create-home --comment "Arch Build User" build
 ENV HOME /home/build
