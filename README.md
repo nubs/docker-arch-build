@@ -3,15 +3,14 @@ This is a base image for building packages for [Arch Linux].
 
 ## Purpose
 This docker image builds on top of Arch Linux's base/devel image for the
-purpose of building arch packages and aurballs.  It provides several key
-features:
+purpose of building arch packages.  It provides several key features:
 
 * A non-root user (`build`) for executing the image build.  This is important
   to ensure that the package can be built correctly without destructively
   modifying the system.
-* The [pkgbuild-introspection] library including the `mkaurball`  command.
-  This makes it easy to generate the `.src.tar.gz` files to upload to AUR for
-  your packages.
+* The [pkgbuild-introspection] library including the `mksrcinfo` and
+  `mkaurball`  commands.  This makes it easy to generate the `.SRCINFO`
+  files to upload to AUR for your packages.
 * The [namcap] command is included to help validate your `PKGBUILD`'s.
 * Default docker command of `makepkg --force`.  This is a common usecase:
   needing to build the package for testing.
@@ -32,10 +31,10 @@ docker run --interactive --tty --rm --volume /tmp/my-package:/package nubs/arch-
 This will make the package placing the results (including the `pkg.tar.xz`
 file for a successful build) in `/tmp/my-package`.
 
-In order to create the aurball:
+In order to create the `.SRCINFO`:
 
 ```bash
-docker run -i -t --rm -v /tmp/my-package:/package nubs/arch-build mkaurball
+docker run -i -t --rm -v /tmp/my-package:/package nubs/arch-build mksrcinfo
 ```
 
 ### Dockerfile build
@@ -63,7 +62,7 @@ current directory):
 ```bash
 docker build --tag my-package .
 docker run -i -t --rm -v "$(pwd):/package" my-package
-docker run -i -t --rm -v "$(pwd):/package" my-package mkaurball
+docker run -i -t --rm -v "$(pwd):/package" my-package mksrcinfo
 ```
 
 ## License
