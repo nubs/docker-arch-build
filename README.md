@@ -65,6 +65,17 @@ docker run -i -t --rm -v "$(pwd):/package" my-package
 docker run -i -t --rm -v "$(pwd):/package" my-package mksrcinfo
 ```
 
+## Permissions
+Because the container runs as a non-root user, you may run into permission
+problems when using volume mounts to your host.  The build user used in the
+container is uid/gid 1000, so you may need to provide write access to that
+user to any files/directories that need to be written to.  For example:
+
+```bash
+chgrp 1000 .
+chmod g+w .
+```
+
 ## License
 docker-arch-build is licensed under the MIT license.  See [LICENSE] for the
 full license text.
