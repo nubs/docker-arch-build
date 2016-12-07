@@ -16,7 +16,6 @@ ENV HOME /home/build
 
 RUN mkdir /package
 RUN chown build /package
-VOLUME ["/package"]
 WORKDIR /package
 
 USER build
