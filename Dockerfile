@@ -21,4 +21,4 @@ USER build
 
 COPY --from=base / /
 
-CMD ["makepkg", "--force"]
+CMD ["makepkg", "--force", "--syncdeps"]
