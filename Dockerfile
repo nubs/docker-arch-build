@@ -9,6 +9,22 @@ RUN useradd --create-home --comment "Arch Build User" build
 RUN mkdir /package
 RUN chown build /package
 
+FROM scratch as syncdeps
+
+ENV LANG en_US.UTF-8
+ENV HOME /home/build
+
+WORKDIR /package
+
+COPY --from=base / /
+
+RUN usermod -aG wheel build
+RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+USER build
+
+CMD ["makepkg", "--force", "--syncdeps"]
+
 FROM scratch
 
 MAINTAINER Spencer Rinehart <anubis@overthemonkey.com>
@@ -22,4 +38,4 @@ USER build
 
 COPY --from=base / /
 
-CMD ["makepkg", "--force", "--syncdeps"]
+CMD ["makepkg", "--force"]
